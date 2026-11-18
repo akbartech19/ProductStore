@@ -12,16 +12,16 @@ class Check(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="checks")
 
 
-    def total(self):
-        sum_ = sum([i.total() for i in self.check_items.all()])
-        return sum_
+    # def total(self):
+    #     sum_ = sum([i.total() for i in self.check_items.all()])
+    #     return sum_
     
 
 class CheckItem(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name="items")
     amount = models.FloatField(default=0)
 
-    check = models.ForeignKey(Check, on_delete=models.CASCADE, related_name="check_items")
+    checks = models.ForeignKey(Check, on_delete=models.CASCADE, related_name="check_items")
     
-    def total(self):
-        return 56
+    # def total(self):
+    #     return 56
