@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import datetime
 
 
 class Categories(models.Model):
@@ -10,7 +10,7 @@ class Categories(models.Model):
 
 
 class Products(models.Model):
-    barcode = models.CharField(max_length=100)
+    barcode = models.CharField(max_length=100, unique=True)
     name = models.CharField(max_length=50)
     sell_price = models.FloatField(0)
     original_price = models.FloatField(default=0)
@@ -22,7 +22,12 @@ class Products(models.Model):
 
     def __str__(self):
             return self.name
-        
+    
+    def get_discount(self):
+        now = datetime.now()
+        # lt == less then
+        # gt == greater than 
+        return self.discounts.filter(start_time__lt=now, end_time__gt=now)
 
 class Discount(models.Model):
     type_discount = models.CharField(max_length=50)
@@ -34,4 +39,4 @@ class Discount(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name="discounts")
     
     def __str__(self):
-            return self.id
+            return self.product.name
