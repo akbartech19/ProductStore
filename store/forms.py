@@ -19,11 +19,25 @@ class ProductAddForm(forms.ModelForm):
 
 
 class DiscountAddForm(forms.ModelForm):
-    type_discount = forms.ChoiceField(choices=[("percent", "% percent"), ("sum", "Sum")])   
-    start_time = forms.DateTimeField(widget=forms.DateTimeInput(attrs={"type":"datetime-local"}))
-    end_time = forms.DateTimeField(widget=forms.DateTimeInput(attrs={"type":"datetime-local"}))
-    
-    
+    type_discount = forms.ChoiceField(
+        choices=[
+            ("percent", "% percent"),
+            ("sum", "Sum")
+        ]
+    )
+
+    start_time = forms.DateTimeField(
+        widget=forms.DateTimeInput(
+            attrs={"type": "datetime-local"}
+        )
+    )
+
+    end_time = forms.DateTimeField(
+        widget=forms.DateTimeInput(
+            attrs={"type": "datetime-local"}
+        )
+    )
+
     class Meta:
         model = Discount
         fields = ["type_discount", "value", "start_time", "end_time"]

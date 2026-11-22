@@ -19,3 +19,4 @@
 .pay label{margin:0}.pay input{display:none}
 .pay span{display:block;text-align:center;padding:10px;border:1px solid var(--bd);border-radius:6px;color:var(--tx);cursor:pointer}
 .pay input:checked+span{border-color:var(--ac);background:var(--ac2);color:var(--ac)}
+

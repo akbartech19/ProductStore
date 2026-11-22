@@ -15,3 +15,23 @@ td form{display:inline}
 .tot{display:flex;justify-content:space-between;color:var(--mu)}
 .tot.b{color:var(--tx);font-size:20px;font-weight:700;margin-top:4px}
 .av{width:56px;height:56px;border-radius:50%;background:var(--ac2);color:var(--ac);display:grid;place-items:center;font-weight:700;font-size:20px}
+.discount-cell {
+    width: 280px;
+    max-width: 280px;
+}
+
+.discount-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    min-width: 0;
+}
+
+.discount-list .tag {
+    white-space: normal;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+}

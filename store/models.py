@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.utils import timezone
 
 
 class Categories(models.Model):
@@ -12,23 +13,25 @@ class Categories(models.Model):
 class Products(models.Model):
     barcode = models.CharField(max_length=100, unique=True)
     name = models.CharField(max_length=50)
-    sell_price = models.FloatField(0)
+    sell_price = models.FloatField(default=0)
     original_price = models.FloatField(default=0)
     store_amount = models.FloatField(default=0)
     unit = models.CharField(max_length=15)
     is_archived = models.BooleanField(default=False)
-    
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name="prducts")
+
+    category = models.ForeignKey(
+        Categories,
+        on_delete=models.CASCADE,
+        related_name="products"
+    )
 
     def __str__(self):
-            return self.name
-    
-    def get_discount(self):
-        now = datetime.now()
-        # lt == less then
-        # gt == greater than 
-        return self.discounts.filter(start_time__lt=now, end_time__gt=now)
+        return self.name
 
+    def get_discount(self):
+        return self.discounts.all().order_by('start_time')
+
+        
 class Discount(models.Model):
     type_discount = models.CharField(max_length=50)
     value = models.FloatField(default=0)
