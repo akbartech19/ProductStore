@@ -20,35 +20,42 @@
 
 <body>
     <div class="app">
-        <aside>
-            <div class="logo"><i>M</i>MarketPOS</div>
-            <h6>Register</h6>
-            <a href="{% url 'sale:sale_page' %}" aria-current="page">Sale <kbd>F1</kbd></a>
-            <a href="return.html">Return<kbd>F3</kbd></a>
-            <a href="profile.html">Profile</a>
+<aside>
+    <div class="logo"><i>M</i>MarketPOS</div>
+    <h6>Register</h6>
 
-            {% if request.user.is_superuser %}
-            <h6 class="">Administration</h6>
-            <a class="" href="{% url 'reports:reports_page' %}">Cashier reports</a>
-            <a class="" href="{% url 'store:store_page' %}">Products</a>
-            <a class="" href="users.html">Users</a>
-            {% endif %}
+    <a href="{% url 'sale:sale_page' %}">Sale <kbd>F1</kbd></a>
+    <a href="#">Return <kbd>F3</kbd></a>
+    <a href="#">Profile</a>
 
-            <div class="side-foot">
-                <div><b id="uname" style="color:var(--tx)">Aziza Karimova</b><br><span id="urole">Cashier</span></div>
-                <form class="logout" action="{% url 'accounts:logout' %}" method="post">
-                    {% csrf_token %}
-                    <button type='submit' style="width:100%">Logout</button>
-                </form>
-                <div class="theme"><span>Dark mode</span><button type="button" class="tsw" role="switch"
-                        aria-checked="false" aria-label="Dark mode"></button></div>
-            </div>
-        </aside>
+    {% if request.user.is_superuser %}
+    <h6 class="">Administration</h6>
+    <a href="{% url 'reports:reports_page' %}">Cashier reports</a>
+    <a href="{% url 'store:store_page' %}">Products</a>
+    <a href="{% url 'accounts:users_page' %}">Users</a>
+    {% endif %}
 
+    <div class="side-foot">
+        <div>
+            <b id="uname" style="color:var(--tx)">Aziza Karimova</b><br>
+            <span id="urole">Cashier</span>
+        </div>
 
-            {% block content %}     {% endblock content  %}
+        <form class="logout" action="{% url 'accounts:logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" style="width:100%">Logout</button>
+        </form>
 
-  
+        <div class="theme">
+            <span>Dark mode</span>
+            <button type="button" class="tsw" role="switch"
+                aria-checked="false" aria-label="Dark mode"></button>
+        </div>
+    </div>
+</aside>
+
+        {% block content %}{% endblock content %}
+
         <footer><span><span class="dot"></span><b>Online</b></span><span>Chilonzor Market</span><span>Register
                 2</span><span style="margin-left:auto" id="clock"></span></footer>
     </div>
